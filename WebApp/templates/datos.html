@@ -1,0 +1,215 @@
+{% extends "layout.html" %}
+{% block content  %}
+
+<style>
+  #contenedorGeneral {
+    margin-top: 35px;
+    width: 100%;
+    height: 540px;
+    display: flex;
+    text-align: left;
+  }
+
+  #izq {
+    width: 30%;
+    /*background:  rgb(13, 58, 206);*/
+    margin-left: 2%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+  }
+
+  #centro {
+    width: 30%;
+    /*background:  rgb(13, 58, 206);*/
+    margin-left: 2%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+  }
+
+  #der {
+    width: 30%;
+    /*background:  rgb(13, 58, 206);*/
+    margin-left: 2%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+  }
+
+  #boton{
+  background-color: #20965b;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 30px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  cursor: pointer;
+  }
+</style>
+
+<div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Datos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Grafica</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+        
+
+            <form action="/grafica" method="post" enctype="multipart/form-data">
+                <!--<input type="text" name="columna" placeholder="ingresa la columna">-->
+                <h2>Ingresa los datos solicitados</h2>
+
+                <div id="contenedorGeneral">
+                  <div id='izq'>
+                    <!-- <h2 style="color: cornsilk;">easd</h2> -->
+          
+                    <div class="form-group">
+                      <label for="salinidad">Salinidad: </label>
+                      <!-- <input type="text" name="salinidad" id="salinidad" class="form-control">    -->
+                      <input type="text" name="salinidad" id="salinidad" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="dma">Densidad de la matriz:</label>
+                      <input type="text" name="dma" id="dma" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="dfl">Densidad del fluido:</label>
+                      <input type="text" name="dfl" id="dfl" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="lma">Lentitud de la matriz:</label>
+                      <input type="text" name="lma" id="lma" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="lfl">Lentitud del fluido:</label>
+                      <input type="text" name="lfl" id="lfl" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="ftort">Factor de tortuosidad:</label>
+                      <input type="text" name="ftort" id="ftort" class="form-control">
+                    </div>
+                  </div>
+  
+                  <div id='centro'>
+                    <!-- <h2 style="color: cornsilk;">easd</h2> -->
+                    <!-- <h2>Ingresa los valores solicitados</h2> -->
+          
+                    <div class="form-group">
+                      <label for="expc">Exponente de cementación:</label>
+                      <input type="text" name="expc" id="expc" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="exps">Exponente de saturación:</label>
+                      <input type="text" name="exps" id="exps" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vgr">Factor de correción del GR:</label>
+                      <input type="text" name="vgr" id="vgr" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vsp">Factor de correción del SP:</label>
+                      <input type="text" name="vsp" id="vsp" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vden">Factor de correción del registro de densidad:</label>
+                      <input type="text" name="vden" id="vden" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vnphi">Factor de correción del registro NPHI:</label>
+                      <input type="text" name="vnphi" id="vnphi" class="form-control">
+                    </div>
+                  </div>
+  
+                  <div id='der'>
+                    <!-- <h2 style="color: cornsilk;">easd</h2>    -->
+                    
+                    <div class="form-group">
+                      <label for="vrp">Factor de corrección de la resistividad profunda:</label>
+                      <input type="text" name="vrp" id="vrp" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vrm">Factor de corrección de la resistividad media: </label>
+                      <input type="text" name="vrm" id="vrm" class="form-control">
+                    </div>
+          
+                    <div class="form-group">
+                      <label for="vrs">Factor de corrección de la resistividad somera: </label>
+                      <input type="text" name="vrs" id="vrs" class="form-control">
+                    </div>
+          
+          
+                    <div class="form-group">
+                      <label>Escoge el tipo de cálculo de volumen de arcilla: </label><br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipo" id="inlineRadio1" value="lineal" required>
+                        <label class="form-check-label" for="inlineRadio1">Lineal</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipo" id="inlineRadio2" value="larinovj" required>
+                        <label class="form-check-label" for="inlineRadio2">Larinov joven</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipo" id="inlineRadio3" value="larinovv" required>
+                        <label class="form-check-label" for="inlineRadio3">Larinov viejo</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="tipo" id="inlineRadio4" value="clavier" required>
+                        <label class="form-check-label" for="inlineRadio4">Clavier</label>
+                      </div>
+                      
+                      <br><br>
+                      <h4>Interpretación de litologías</h4>
+                      
+                      <div class="form-group">                        
+                        <label for="nclust">Número de litologías presentes: </label>
+                        <p>En caso de conocer el número de litologías, ingresar -1 para hacer una interpretación automática</p>
+                        <input type="text" name="nclust" id="nclust" class="form-control">
+                      </div>
+  
+                      
+          
+                      
+                      <br>
+                    </div>
+                    <br>
+
+                    
+                  </div>
+                </div>
+                <br>
+
+
+                
+                <!--<input type="text" name="tipo" placeholder="ingresa el tipo de columna">-->
+                <input type="text" value="{{ columnas.filename }}" name="filename" hidden>
+                <input type="submit" value="Continuar" class="btn btn-success" id="boton">
+            </form>
+        </div>
+      </div>
+
+
+
+{% endblock %}
